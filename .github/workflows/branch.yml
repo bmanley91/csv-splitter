@@ -4,7 +4,6 @@ on:
   push:
     branches-ignore: 
       - master
-      - release
 
 jobs:
   build:
@@ -22,3 +21,7 @@ jobs:
       
       - name: Test
         run: go test -v ./...
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
