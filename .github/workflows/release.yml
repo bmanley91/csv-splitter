@@ -23,10 +23,13 @@ jobs:
       - name: Test
         run: go test -v ./...
 
+      - name: Save Release SHA
+        run: echo ${{ github.sha }} > Release.txt
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             Release.txt
-            LICENSE
+            LICENSE.md
             csv-splitter
