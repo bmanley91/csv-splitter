@@ -24,8 +24,8 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith('refs/tags/')
         with:
           files: |
-            LICENSE
+            LICENSE.md
             csv-splitter
