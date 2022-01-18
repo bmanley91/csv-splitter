@@ -19,8 +19,11 @@ jobs:
         with:
           go-version: 1.17
       
-      - name: Build
-        run: go build -v .
+      - name: Build For Windows
+        run: GOOS=windows go build -o bin/csv-parser.exe .
+
+      - name: Build For Unix
+        run: go build -o bin/csv-parser .
       
       - name: Test
         run: go test -v ./...
@@ -34,4 +37,5 @@ jobs:
           files: |
             Release.txt
             LICENSE.md
-            csv-splitter
+            bin/csv-splitter
+            bin/csv-splitter.exe
