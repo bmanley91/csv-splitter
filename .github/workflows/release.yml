@@ -37,4 +37,5 @@ jobs:
           files: |
             Release.txt
             LICENSE.md
-            csv-splitter
+            bin/csv-splitter
+            bin/csv-splitter.exe
