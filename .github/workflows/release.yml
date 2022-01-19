@@ -20,10 +20,10 @@ jobs:
           go-version: 1.17
       
       - name: Build For Windows
-        run: GOOS=windows go build -o bin/csv-parser.exe .
+        run: GOOS=windows go build -o bin/csv-splitter.exe .
 
       - name: Build For Unix
-        run: go build -o bin/csv-parser .
+        run: go build -o bin/csv-splitter .
       
       - name: Test
         run: go test -v ./...
