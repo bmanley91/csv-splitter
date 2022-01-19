@@ -20,12 +20,21 @@ This script supports the following flags:
 * outputDir `string`- The directory in which the output should be written. (default "./output")
 
 Flags can be specified like so:
+### Unix
 ```sh
 $ ./csv-splitter \
-    -inputFilePath=/Users/me/path/to/file \
-    -lineCount=100 \
-    -outputDir=./output-goes-here
+    -inputFilePath /Users/me/path/to/file \
+    -lineCount 100 \
+    -outputDir ./output-goes-here
 ```
+### Windows
+```cmd
+> csv-splitter.exe ^ 
+      -inputFilePath \path\to\output ^
+      -lineCount 100 ^
+      -outputDir ./output-goes-here
+```
+
 
 Running the executable with no flags will use the defaults listed above.
 
