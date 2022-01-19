@@ -29,5 +29,5 @@ jobs:
             Release.txt
             LICENSE.md
             executables.zip
-          draft: true
+          prerelease: true
           tag_name: prerelease-${{ github.sha }}
