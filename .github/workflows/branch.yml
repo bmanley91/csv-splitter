@@ -24,10 +24,10 @@ jobs:
 
       - name: Build Release
         uses: softprops/action-gh-release@v1
-        draft: true
-        tag_name: build-{{ GITHUB_SHA }}
         with:
           files: |
             Release.txt
             LICENSE.md
             executables.zip
+          draft: true
+          tag_name: build-{{ GITHUB_SHA }}
