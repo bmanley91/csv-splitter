@@ -22,12 +22,12 @@ jobs:
       - name: Test
         run: go test -v ./...
 
-     - name: Pre-Release
+      - name: Pre-Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             Release.txt
             LICENSE.md
             executables.zip
-          draft: true
+          prerelease: true
           tag_name: prerelease-${{ github.sha }}
