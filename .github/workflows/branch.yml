@@ -34,4 +34,4 @@ jobs:
             LICENSE.md
             executables.zip
           draft: true
-          tag_name: build-${ GITHUB_SHA }
+          tag_name: build-${{ github.GITHUB_SHA }}
