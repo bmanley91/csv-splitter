@@ -25,6 +25,11 @@ jobs:
       - name: Test
         run: go test -v ./...
 
+      - uses: vimtor/action-zip@v1
+        with:
+          files: bin
+          dest: executables.zip
+
       - name: Pre-Release
         uses: softprops/action-gh-release@v1
         with:
