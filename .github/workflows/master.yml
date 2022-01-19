@@ -22,7 +22,7 @@ jobs:
       - name: Test
         run: go test -v ./...
 
-     - name: Pre-Release
+      - name: Pre-Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
