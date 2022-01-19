@@ -22,9 +22,9 @@ jobs:
       - name: Test
         run: go test -v ./...
 
-      - name: GitHub Tag
-        uses: mathieudutour/github-tag-action@v6.0
-        custom_tag: 
+      # - name: GitHub Tag
+      #   uses: mathieudutour/github-tag-action@v6.0
+      #   custom_tag: 
 
       - name: Build Release
         uses: softprops/action-gh-release@v1
