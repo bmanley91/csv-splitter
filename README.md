@@ -18,6 +18,7 @@ This script supports the following flags:
 * inputFilePath `string`- Path to the CSV File that will be split. (default "./input.csv")
 * lineCount `int`- Maximum number of lines per output file. (default 500)
 * outputDir `string`- The directory in which the output should be written. (default "./output")
+* verbose - If given, verbose logs will be displayed.
 
 Flags can be specified like so:
 ### Unix
@@ -25,14 +26,16 @@ Flags can be specified like so:
 $ ./csv-splitter \
     -inputFilePath /Users/me/path/to/file \
     -lineCount 100 \
-    -outputDir ./output-goes-here
+    -outputDir ./output-goes-here \
+    -verbose
 ```
 ### Windows
 ```cmd
 > csv-splitter.exe ^ 
       -inputFilePath \path\to\output ^
       -lineCount 100 ^
-      -outputDir ./output-goes-here
+      -outputDir ./output-goes-here ^
+      -verbose
 ```
 
 
