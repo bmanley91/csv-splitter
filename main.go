@@ -5,9 +5,12 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"log"
 	"os"
+
+	"manley.dev/csv-splitter/logger"
 )
+
+var l logger.Logger
 
 type ParsedFile struct {
 	header string
@@ -18,27 +21,30 @@ func main() {
 	lineCountPtr := flag.Int("lineCount", 500, "Maximum number of lines per output file.")
 	inputFilePathPtr := flag.String("inputFilePath", "./input.csv", "Path to the CSV File that will be split.")
 	outputDirPtr := flag.String("outputDir", "./output", "The directory in which the output should be written.")
+	logEnabledPtr := flag.Bool("verbose", false, "Whether or not verbose logging is enabled")
 
 	flag.Parse()
 
 	fmt.Println("lineCount: ", *lineCountPtr)
 	fmt.Println("inputFile: ", *inputFilePathPtr)
 
+	l = logger.InitLogger(*logEnabledPtr)
+
 	parsedFile, parseErr := readFile(*inputFilePathPtr)
 
 	if parseErr != nil {
-		log.Fatalf("Error reading/parsing file %v\n", parseErr)
+		l.Fatalf("Error reading/parsing file %v\n", parseErr)
 	}
 
-	fmt.Printf("Read file with header: '%v' and %d records.\n", parsedFile.header, len(parsedFile.lines))
+	l.Infof("Read file with header: '%v' and %d records.\n", parsedFile.header, len(parsedFile.lines))
 
 	fileCount, writeErr := writeOutput(parsedFile, *outputDirPtr, *lineCountPtr)
 
 	if writeErr != nil {
-		log.Fatalf("Error writing output %v\n", writeErr)
+		l.Fatalf("Error writing output %v\n", writeErr)
 	}
 
-	fmt.Printf("Succesfully split input file into %d output files in %v.\n", fileCount, *outputDirPtr)
+	l.Infof("Succesfully split input file into %d output files in %v.\n", fileCount, *outputDirPtr)
 }
 
 func readFile(path string) (parsedFile ParsedFile, err error) {
@@ -58,7 +64,7 @@ func readFile(path string) (parsedFile ParsedFile, err error) {
 }
 
 func parseFile(file *os.File) (parsedFile ParsedFile, err error) {
-	fmt.Printf("Parsing file %v\n", file.Name())
+	l.Infof("Parsing file %v\n", file.Name())
 	scanner := bufio.NewScanner(file)
 	if !scanner.Scan() {
 		return parsedFile, errors.New("no lines in file")
@@ -110,11 +116,11 @@ func writeOutput(parsedFile ParsedFile, outputDir string, maxLineCount int) (fil
 }
 
 func createNewFileWithHeader(header string, outputDir string, index int) os.File {
-	fmt.Printf("Creating file #%d.\n", index)
+	l.Infof("Creating file #%d.\n", index)
 	outputFilePath := fmt.Sprintf("%v/output_%d.csv", outputDir, index)
 	file, err := os.Create(outputFilePath)
 	if err != nil {
-		log.Fatalf("Error creating file %v", err)
+		l.Fatalf("Error creating file %v", err)
 	}
 
 	writeLineToFile(*file, header)

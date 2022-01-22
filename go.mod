@@ -1,3 +1,3 @@
-module github.com/bmanley91/csv-splitter
+module manley.dev/csv-splitter
 
 go 1.17
