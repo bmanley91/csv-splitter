@@ -23,7 +23,9 @@ jobs:
         run: go build -o bin/csv-splitter .
       
       - name: Test
-        run: go test -v ./...
+        run:
+          go test -v ./... -covermode=count -coverprofile=coverage.out
+          go tool cover -func=coverage.out -o=coverage.out
 
       - uses: vimtor/action-zip@v1
         with:

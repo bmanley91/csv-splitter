@@ -1,4 +1,6 @@
 # CSV Splitter
+![Master Workflow Status](https://github.com/bmanley91/csv-splitter/actions/workflows/master.yml/badge.svg)
+
 This is a command line tool used to split large CSVs into smaller files based on a max line count.
 
 ## Building
