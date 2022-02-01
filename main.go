@@ -95,6 +95,9 @@ func writeOutput(parsedFile ParsedFile, outputDir string, maxLineCount int) (fil
 
 	for _, line := range parsedFile.lines {
 		if currentLineCount >= maxLineCount {
+			// Close connection to current file
+			currentFile.Close()
+
 			// Increment number of files
 			fileCount++
 
